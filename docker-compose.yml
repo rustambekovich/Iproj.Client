@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: iproj-client-web-container
+    image: iproj-client-web-image:latest
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+    ports:
+      - 4040:8080
+      - 3333:443
+
+  

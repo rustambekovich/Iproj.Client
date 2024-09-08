@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Owner Dashboard";
+}
+
+<h2>Owner Dashboard</h2>
+
+<p>Welcome to the Owner Dashboard! This is the main area where you can manage your application as an owner.</p>
+
+<!-- Log Out Button -->
+<form asp-controller="Home" asp-action="Logout">
+    <button type="submit" class="btn btn-danger">Log Out</button>
+</form>
+
+<!-- Additional content can be added here -->
+<div>
+    <h3>Manage Your Content</h3>
+    <ul>
+        <li><a href="#">View Reports</a></li>
+        <li><a href="#">Manage Users</a></li>
+        <li><a href="#">Settings</a></li>
+    </ul>
+</div>
