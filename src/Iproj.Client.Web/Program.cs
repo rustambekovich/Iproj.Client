@@ -1,11 +1,11 @@
 using Iproj.Client.Web.Client;
 
 var builder = WebApplication.CreateBuilder(args);
-/*
+
 builder.WebHost.UseKestrel(options =>
 {
     options.Configure(builder.Configuration.GetSection("Kestrel"));
-});*/
+});
 
 // Add services to the container.
 var startup = new Startup(builder.Configuration);

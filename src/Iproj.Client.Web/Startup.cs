@@ -22,10 +22,14 @@ public class Startup
             options.DefaultChallengeScheme = "oidc";
             options.DefaultSignOutScheme = "Cookies";
         })
-        .AddCookie("Cookies")
+        .AddCookie("Cookies", options =>
+        {
+            options.Cookie.SameSite = SameSiteMode.Lax;  // Allows cookies on HTTP
+            options.Cookie.SecurePolicy = CookieSecurePolicy.None;  // Do not enforce HTTPS
+        })
         .AddOpenIdConnect("oidc", options =>
         {
-            //options.Authority = "https://localhost:7131";
+            //options.Authority = "http://192.168.0.30:8080";
             options.Authority = "http://45.130.148.192:8080";
             options.ClientId = "oidcMVCApp";
             options.ClientSecret = "Wabase";
