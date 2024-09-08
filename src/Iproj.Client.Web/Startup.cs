@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Iproj.Client.Web.Helpers;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Configuration;
@@ -64,13 +65,10 @@ public class Startup
         {
             app.UseExceptionHandler("/Home/Error");
             //app.UseHsts();
-            app.Use((context, next) =>
-            {
-                context.Request.Scheme = "http";
-                return next(context);
-            });
         }
-        
+
+        app.UseMiddleware<IprojMiddleware>();
+
         //app.UseHttpsRedirection();
         app.UseStaticFiles();
 
