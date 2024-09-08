@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Configuration;
 using static System.Formats.Asn1.AsnWriter;
 namespace Iproj.Client.Web.Client;
 
 public class Startup
 {
-    public IConfiguration Configuration { get; }
+    public IConfiguration Configuration { get; set; }
 
     public Startup(IConfiguration configuration)
     {
@@ -18,9 +20,12 @@ public class Startup
 
         services.AddAuthentication(options =>
         {
-            options.DefaultScheme = "Cookies";
+            /*options.DefaultScheme = "Cookies";
             options.DefaultChallengeScheme = "oidc";
-            options.DefaultSignOutScheme = "Cookies";
+            options.DefaultSignOutScheme = "Cookies";*/
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         })
         .AddCookie("Cookies", options =>
         {
