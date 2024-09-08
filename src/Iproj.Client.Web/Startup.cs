@@ -20,12 +20,9 @@ public class Startup
 
         services.AddAuthentication(options =>
         {
-            /*options.DefaultScheme = "Cookies";
+            options.DefaultScheme = "Cookies";
             options.DefaultChallengeScheme = "oidc";
-            options.DefaultSignOutScheme = "Cookies";*/
-            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultSignOutScheme = "Cookies";
         })
         .AddCookie("Cookies", options =>
         {
