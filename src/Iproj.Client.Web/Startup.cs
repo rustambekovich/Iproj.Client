@@ -22,11 +22,11 @@ public class Startup
             options.DefaultChallengeScheme = "oidc";
             options.DefaultSignOutScheme = "Cookies";
         })
-        .AddCookie("Cookies", options =>
+        .AddCookie("Cookies"/*, options =>
         {
             options.Cookie.SameSite = SameSiteMode.Lax;  // Allows cookies on HTTP
             options.Cookie.SecurePolicy = CookieSecurePolicy.None;  // Do not enforce HTTPS
-        })
+        }*/)
         .AddOpenIdConnect("oidc", options =>
         {
             //options.Authority = "http://192.168.0.30:8080";
