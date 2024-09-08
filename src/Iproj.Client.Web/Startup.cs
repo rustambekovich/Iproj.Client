@@ -34,7 +34,6 @@ public class Startup
             options.UsePkce = true;
             options.ResponseMode = "query";
             options.Scope.Add("weatherApi.read");
-            options.Scope.Add("weatherApi.write");
             options.Scope.Add("openid");
             options.Scope.Add("profile");
             options.Scope.Add("email");
