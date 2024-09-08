@@ -64,6 +64,11 @@ public class Startup
         {
             app.UseExceptionHandler("/Home/Error");
             //app.UseHsts();
+            app.Use((context, next) =>
+            {
+                context.Request.Scheme = "http";
+                return next(context);
+            });
         }
         
         //app.UseHttpsRedirection();
