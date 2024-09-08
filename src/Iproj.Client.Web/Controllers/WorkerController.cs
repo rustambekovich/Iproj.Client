@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Iproj.Client.Web.Client.Controllers;
 
 [Authorize]
+[ApiController]
+[Route("[controller]/[action]")]
 public class WorkerController : Controller
 {
     public async Task<IActionResult> WorkerDashboard()
@@ -20,7 +22,7 @@ public class WorkerController : Controller
             if (userRole.Equals("Worker"))
                 return View();
             else
-                return Redirect("https://localhost:7250/Owner/OwnerDashboard");
+                return Redirect("https://cl.iproj.uz/Owner/OwnerDashboard");
         }
 
         return View();

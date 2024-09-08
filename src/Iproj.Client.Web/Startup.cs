@@ -1,5 +1,4 @@
-﻿using Iproj.Client.Web.Helpers;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Configuration;
@@ -32,8 +31,7 @@ public class Startup
         })
         .AddOpenIdConnect("oidc", options =>
         {
-            //options.Authority = "http://192.168.0.30:8080";
-            options.Authority = "http://45.130.148.192:8080";
+            options.Authority = "https://auth.iproj.uz";
             options.ClientId = "oidcMVCApp";
             options.ClientSecret = "Wabase";
 
@@ -64,12 +62,11 @@ public class Startup
         else
         {
             app.UseExceptionHandler("/Home/Error");
-            //app.UseHsts();
+            app.UseHsts();
         }
 
-        app.UseMiddleware<IprojMiddleware>();
 
-        //app.UseHttpsRedirection();
+        app.UseHttpsRedirection();
         app.UseStaticFiles();
 
         app.UseRouting();
