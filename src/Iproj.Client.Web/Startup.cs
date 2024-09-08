@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using static System.Formats.Asn1.AsnWriter;
 namespace Iproj.Client.Web.Client;
@@ -27,7 +28,7 @@ public class Startup
         .AddCookie("Cookies", options =>
         {
             options.Cookie.SameSite = SameSiteMode.Lax;  // Allows cookies on HTTP
-            options.Cookie.SecurePolicy = CookieSecurePolicy.None;  // Do not enforce HTTPS
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Do not enforce HTTPS
         })
         .AddOpenIdConnect("oidc", options =>
         {
@@ -45,7 +46,7 @@ public class Startup
             options.Scope.Add("role");
 
             options.GetClaimsFromUserInfoEndpoint = true;
-            options.RequireHttpsMetadata = false;
+            options.RequireHttpsMetadata = true;
             options.SaveTokens = true;
 
             options.CallbackPath = "/signin-oidc";
@@ -65,6 +66,15 @@ public class Startup
             app.UseHsts();
         }
 
+
+        var fordwardedHeaderOptions = new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+        };
+        fordwardedHeaderOptions.KnownNetworks.Clear();
+        fordwardedHeaderOptions.KnownProxies.Clear();
+
+        app.UseForwardedHeaders(fordwardedHeaderOptions);
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
