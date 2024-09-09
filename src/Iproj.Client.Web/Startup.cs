@@ -27,7 +27,7 @@ public class Startup
         })
         .AddCookie("Cookies", options =>
         {
-            options.Cookie.SameSite = SameSiteMode.Lax;  // Allows cookies on HTTP
+            options.Cookie.SameSite = SameSiteMode.None;  // Allows cookies on HTTP
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Do not enforce HTTPS
         })
         .AddOpenIdConnect("oidc", options =>
