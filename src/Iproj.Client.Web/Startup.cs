@@ -67,14 +67,14 @@ public class Startup
         }
 
 
-        var fordwardedHeaderOptions = new ForwardedHeadersOptions
+        /*var fordwardedHeaderOptions = new ForwardedHeadersOptions
         {
             ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
         };
         fordwardedHeaderOptions.KnownNetworks.Clear();
         fordwardedHeaderOptions.KnownProxies.Clear();
 
-        app.UseForwardedHeaders(fordwardedHeaderOptions);
+        app.UseForwardedHeaders(fordwardedHeaderOptions);*/
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
