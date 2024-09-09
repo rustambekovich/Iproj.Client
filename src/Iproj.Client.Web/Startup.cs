@@ -27,7 +27,7 @@ public class Startup
         })
         .AddCookie("Cookies", options =>
         {
-            options.Cookie.SameSite = SameSiteMode.None;  // Allows cookies on HTTP
+            options.Cookie.SameSite = SameSiteMode.Lax;  
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Do not enforce HTTPS
         })
         .AddOpenIdConnect("oidc", options =>
@@ -67,14 +67,14 @@ public class Startup
         }
 
 
-        var fordwardedHeaderOptions = new ForwardedHeadersOptions
+        /*var fordwardedHeaderOptions = new ForwardedHeadersOptions
         {
             ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
         };
         fordwardedHeaderOptions.KnownNetworks.Clear();
         fordwardedHeaderOptions.KnownProxies.Clear();
 
-        app.UseForwardedHeaders(fordwardedHeaderOptions);
+        app.UseForwardedHeaders(fordwardedHeaderOptions);*/
 
         app.Use((context, next) =>
         {
